@@ -1,0 +1,64 @@
+newstr(input);
+newstr(input2);
+newstr(input3);
+newstr(total);
+
+newstr(answerStr);
+newstr(output);
+
+newflt(answer);
+newflt(num1);
+newflt(num2);
+
+include<window>(800,600);
+#startCalc;
+//window1;
+setsize(800,600);
+text(50,50,50,input number 1) /0/0/0;
+show(0);
+input(input);
+
+setsize(800,600);
+text(50,50,50,input action [word]) /0/0/0;
+text(50,200,30,!input) /0/0/0;
+show(0);
+input(input2);
+setsize(800,600);
+text(50,50,50,input number 2) /0/0/0;
+combine(!input,!input2,total);
+text(50,200,30,!total) /0/0/0;
+show(0);
+input(input3);
+combine(!total,!input3,total);
+//math;
+
+flt<str(num1,!input);
+flt<str(num2,!input3);
+
+if[str]=(!input2,+,adder);
+    add(!num1,!num2,answer);
+#adder;
+if[str]=(!input2,-,miner);
+    sub(!num1,!num2,answer);
+#miner;
+if[str]=(!input2,*,multer);
+    mult(!num1,!num2,answer);
+#multer;
+if[str]=(!input2,/,diver);
+    div(!num1,!num2,answer);
+#diver;
+if[str]=(!total,10+9,fun);
+    setflt(answer,21);
+#fun;
+//final screen;
+
+setsize(800,600);
+str<flt(answerStr,!answer);
+combine(answer for ',!total,output);
+combine(!output,' is ,output);
+combine(!output,!answerStr,output);
+text(50,50,50,!output) /0/0/0;
+text(250,250,20,press any key to restart) /0/0/0;
+show(0);
+input(answer);
+goto(startCalc);

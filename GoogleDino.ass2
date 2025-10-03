@@ -1,0 +1,47 @@
+newflt(cactus);
+setflt(cactus,900);
+newflt(posY);
+newflt(framesUp);
+setflt(framesUp,10);
+setflt(posY,250);
+
+include<window>(810,630);
+//screen!;
+#startFrame;
+//move cactus;
+sub(!cactus,15,cactus);
+if<(!cactus,-20,cac);
+setflt(cactus,900);
+#cac;
+if> (!framesUp,0,frames);
+sub(!framesUp,1,framesUp);
+sub(!posY,40,posY);
+#frames;
+
+setsize(800,600);
+if< (!framesUp,1,fr2);
+add(!posY,30,posY);
+#fr2;
+if> (!posY,450,bb);
+setflt(posY,450);
+if key (W,jump);
+	setflt(framesUp,10);
+#jump;
+#bb;
+paint(50,!posY,50,150) /255/255/0;
+paint(!cactus,450,50,150) /0/255/0;
+show(10);
+
+//collission;
+
+if<(!cactus,100,endcoll);
+	if>(!cactus,0,endcoll);
+		if> (!posY,320,endcoll);
+			text(100,100,50,YOU DIED) /255/0/0;
+				paint(150,150,20,20) /255/0/0;
+				paint(250,150,20,20) /255/0/0;
+				paint(170,200,80,20) /255/0/0;
+			show(10000);
+
+#endcoll;
+goto(startFrame);

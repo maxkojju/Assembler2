@@ -1,0 +1,64 @@
+newflt(playerX);
+setflt(playerX,450);
+newflt(enemyX);
+setflt(enemyX,200);
+newflt(enemyY);
+newflt(enemySpeed);
+setflt(enemySpeed,10);
+
+include<window>(800,600);
+
+#startFrame;
+//logic enemy;
+add(!enemyY,!enemySpeed,enemyY);
+if>(!enemyY,600,enemyXborder);
+    setflt(enemyY,-100);
+    random(0,2,enemyX);
+    mult(!enemyX,250,enemyX);
+    add(!enemyX,200,enemyX);
+    add(!enemySpeed,0.5,enemySpeed);
+#enemyXborder;
+
+//playerLogic;
+if key(D,playerRight);
+    setflt(playerX, 450);
+#playerRight;
+if key(A,playerLeft);
+    setflt(playerX, 200);
+#playerLeft;
+
+//render;
+setsize(800,600);
+paint(0,0,800,600) /0/0/0;
+paint(!enemyX,!enemyY,50,100) /0/0/255;
+paint(!playerX,540,50,35) /255/255/0;
+show(2);
+//collission;
+if>(!playerX,250,nocollision1);
+    if>(!enemyX,250,nocollision1);
+        if>(!enemyY,450,nocollision1);
+            if<(!enemyY,520,nocollision1);
+            goto(dead);
+#nocollision1;
+if<(!playerX,250,nocollision);
+    if<(!enemyX,250,nocollision);
+        if>(!enemyY,450,nocollision);
+        if<(!enemyY,520,nocollision);
+            goto(dead);
+#nocollision;
+
+goto(startFrame);
+
+
+#dead;
+text(250,40,30,you dead :() /0/255/255;
+newstr(score);
+sub(!enemySpeed,10,enemySpeed);
+str<flt(score,!enemySpeed);
+combine(Final score:,!score,score);
+text(250,65,30,!score) /0/255/255;
+show(500);
+setsize(400,100);
+paint(0,0,800,600) /255/0/0;
+text(35,70,80,well try) /255/255/255;
+show(1000);

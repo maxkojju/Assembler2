@@ -1,0 +1,95 @@
+include<window>(810,630);
+// Инициализация переменных;
+newflt(playerX);
+setflt(playerX, 375); // Начальная позиция игрока по X (в центре);
+newflt(playerY);
+setflt(playerY, 550); // Позиция игрока по Y (внизу экрана);
+newflt(obstacleX);
+setflt(obstacleX, 400); // Начальная позиция препятствия по X;
+newflt(obstacleY);
+setflt(obstacleY, 0);   // Препятствие начинается сверху;
+newflt(obstacleSpeed);
+setflt(obstacleSpeed, 50); // Скорость падения препятствия;
+newflt(score);
+setflt(score, 0); // Счетчик очков;
+newflt(diffY);
+newflt(diffX);
+
+// Основной игровой цикл;
+#gameLoop;
+// Управление игроком;
+if key(A, noLeft); // Движение влево на клавишу A;
+    sub(!playerX, 50, playerX);
+#noLeft;
+
+if key(D, noRight); // Движение вправо на клавишу D;
+    add(!playerX, 50, playerX);
+#noRight;
+
+// Ограничение движения игрока по краям экрана;
+if<(!playerX, 0, fixLeft);
+    setflt(playerX, 0);
+#fixLeft;
+if>(!playerX, 750, fixRight);
+    setflt(playerX, 750);
+#fixRight;
+
+// Движение препятствия;
+add(!obstacleY, !obstacleSpeed, obstacleY);
+
+// Если препятствие достигло низа, сбросить его наверх с новым X;
+if>(!obstacleY, 600, resetObstacle);
+    setflt(obstacleY, 0);
+    setflt(obstacleX, 800); // Временное значение за экраном;
+    mult(!score, 0.5, obstacleX); // Случайная позиция X (0-400);
+    random(0,800,obstacleX);
+    add(!score, 1, score); // Увеличение счета;
+#resetObstacle;
+
+// Отрисовка;
+setsize(800, 600);
+paint(0,0,800,600) /0/0/0;
+paint(!playerX, !playerY, 50, 50) /0/255/255; // Игрок (голубой прямоугольник);
+paint(!obstacleX, !obstacleY, 50, 50) /255/0/0; // Препятствие (красный прямоугольник);
+text(10, 30, 20, Score: !score) /0/0/0; // Отображение счета;
+show(35);
+
+// Проверка столкновения;
+if<(!obstacleY, 500, noCollision); // Препятствие еще не у игрока;
+    goto(continue);
+#noCollision;
+if>(!obstacleY, 600, noCollision2); // Препятствие ниже игрока;
+    goto(continue);
+#noCollision2;
+
+// Вычисляем разницу по X и Y;
+sub(!playerX, !obstacleX, diffX);
+if<(!diffX, 0, makePositiveX); // Если diffX < 0, делаем положительным;
+    mult(!diffX, -1, diffX);
+#makePositiveX;
+if>(!diffX, 50, noCollisionX); // Если |diffX| > 50, нет столкновения по X;
+    goto(continue);
+#noCollisionX;
+
+sub(!playerY, !obstacleY, diffY);
+if<(!diffY, 0, makePositiveY); // Если diffY < 0, делаем положительным;
+    mult(!diffY, -1, diffY);
+#makePositiveY;
+if>(!diffY, 50, noCollisionY); // Если |diffY| > 50, нет столкновения по Y;
+    goto(continue);
+#noCollisionY;
+
+// Если дошли сюда, есть столкновение;
+goto(gameOver);
+
+#continue;
+goto(gameLoop);
+
+#gameOver;
+setsize(800, 600);
+text(300, 300, 40, GAME OVER) /255/0/0; // Конец игры;
+text(300, 350, 30, Score:) /255/0/0; // Итоговый счет;
+newstr(scoreWin);
+str<flt(scoreWin,!score);
+text(450, 350, 30, !scoreWin) /255/0/0; // Итоговый счет;
+show(10000);

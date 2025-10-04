@@ -1,0 +1,71 @@
+newflt(playerX);
+newflt(playerY);
+newflt(jumpFrames);
+newflt(myX);
+
+newflt(cameraX);
+
+newflt(playerDown);
+
+include<window> (800,600);
+#startFrame;
+//map;
+setsize(800,600);
+bgpaint(0,0,800,600) /0/255/255;
+
+paint(0,500,800,100) /0/255/50;
+add(!playerX,250,myX);
+paint(!myX,400,200,100) /120/120/120;
+add(!playerX,500,myX);
+paint(!myX,300,50,200) /120/120/120;
+add(!playerX,800,myX);
+paint(!myX,400,20,100) /120/120/120;
+add(!playerX,880,myX);
+paint(!myX,400,50,100) /120/120/120;
+
+add(!playerX,920,myX);
+paint(!myX,300,50,200) /120/120/120;
+add(!playerX,950,myX);
+paint(!myX,200,50,300) /120/120/120;
+add(!playerX,1100,myX);
+paint(!myX,0,50,380) /120/120/120;
+add(!playerX,1250,myX);
+paint(!myX,120,100,25) /120/120/120;
+
+//gravity;
+add(!playerY,10,playerDown);
+if<(!jumpFrames,0,noDown);
+overlap?(50,!playerDown,50,100,noDown);
+add(!playerY,10,playerY);
+#noDown;
+
+!overlap?(50,!playerDown,50,100,noDown2);
+if key(W,noDown2);
+    setflt(jumpFrames,15);
+
+
+#noDown2;
+
+sub(!jumpFrames,1,jumpFrames);
+if>(!jumpFrames,0,goup);
+sub(!playerY,10,playerY);
+#goup;
+
+
+
+sub(50,5,playerDown);
+if key(A,noLeft);
+overlap?(45,!playerY,50,100,noLeft);
+
+add(!playerX,5,playerX);
+#noLeft;
+
+if key(D,noRight);
+overlap?(55,!playerY,50,100,noRight);
+sub(!playerX,5,playerX);
+#noRight;
+paint(50,!playerY,50,100) /255/0/0;
+show(1);
+goto(startFrame);
+#no;
+show(1);

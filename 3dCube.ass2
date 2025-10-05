@@ -1,0 +1,158 @@
+
+newflt(draw1);
+
+newflt(centerX);
+setflt(centerX,550);
+newflt(centerY);
+setflt(centerY,550);
+newflt(d);
+setflt(d,2);
+newflt(scale);
+setflt(scale,200);
+
+
+
+// Define 3D coordinates for each point ;
+// point1: (-1, -1, -1); newflt(X1); setflt(X1,-1); newflt(Y1); setflt(Y1,-1); newflt(Z1); setflt(Z1,-1);
+
+// point2: (1, -1, -1) ;newflt(X2); setflt(X2,1); newflt(Y2); setflt(Y2,-1); newflt(Z2); setflt(Z2,-1);
+
+// point3: (1, 1, -1) ;newflt(X3); setflt(X3,1); newflt(Y3); setflt(Y3,1); newflt(Z3); setflt(Z3,-1);
+
+// point4: (-1, 1, -1) ;newflt(X4); setflt(X4,-1); newflt(Y4); setflt(Y4,1); newflt(Z4); setflt(Z4,-1);
+
+// point5: (-1, -1, 1) ;newflt(X5); setflt(X5,-1); newflt(Y5); setflt(Y5,-1); newflt(Z5); setflt(Z5,1);
+
+// point6: (1, -1, 1); newflt(X6); setflt(X6,1); newflt(Y6); setflt(Y6,-1); newflt(Z6); setflt(Z6,1);
+
+// point7: (1, 1, 1); newflt(X7); setflt(X7,1); newflt(Y7); setflt(Y7,1); newflt(Z7); setflt(Z7,1);
+
+// point8: (-1, 1, 1) ;newflt(X8); setflt(X8,-1); newflt(Y8); setflt(Y8,1); newflt(Z8); setflt(Z8,1);
+
+include<window> (1500,1500);
+#frame;
+// point1 projection; newflt(PosX1); newflt(subposX1); setflt(subposX1,!Z1); setflt(PosX1,!X1); mult(!PosX1,!d,PosX1); add(!subposX1,!d,subposX1); div(!PosX1,!subposX1,PosX1); mult(!PosX1,!scale,PosX1); add(!PosX1,!centerX,PosX1);
+
+newflt(PosY1); newflt(subposY1); setflt(subposY1,!Z1); setflt(PosY1,!Y1); mult(!PosY1,!d,PosY1); add(!subposY1,!d,subposY1); div(!PosY1,!subposY1,PosY1); mult(!PosY1,!scale,PosY1); add(!PosY1,!centerY,PosY1);
+
+// point2 projection ;newflt(PosX2); newflt(subposX2); setflt(subposX2,!Z2); setflt(PosX2,!X2); mult(!PosX2,!d,PosX2); add(!subposX2,!d,subposX2); div(!PosX2,!subposX2,PosX2); mult(!PosX2,!scale,PosX2); add(!PosX2,!centerX,PosX2);
+
+newflt(PosY2); newflt(subposY2); setflt(subposY2,!Z2); setflt(PosY2,!Y2); mult(!PosY2,!d,PosY2); add(!subposY2,!d,subposY2); div(!PosY2,!subposY2,PosY2); mult(!PosY2,!scale,PosY2); add(!PosY2,!centerY,PosY2);
+
+// point3 projection ;newflt(PosX3); newflt(subposX3); setflt(subposX3,!Z3); setflt(PosX3,!X3); mult(!PosX3,!d,PosX3); add(!subposX3,!d,subposX3); div(!PosX3,!subposX3,PosX3); mult(!PosX3,!scale,PosX3); add(!PosX3,!centerX,PosX3);
+
+newflt(PosY3); newflt(subposY3); setflt(subposY3,!Z3); setflt(PosY3,!Y3); mult(!PosY3,!d,PosY3); add(!subposY3,!d,subposY3); div(!PosY3,!subposY3,PosY3); mult(!PosY3,!scale,PosY3); add(!PosY3,!centerY,PosY3);
+
+// point4 projection; newflt(PosX4); newflt(subposX4); setflt(subposX4,!Z4); setflt(PosX4,!X4); mult(!PosX4,!d,PosX4); add(!subposX4,!d,subposX4); div(!PosX4,!subposX4,PosX4); mult(!PosX4,!scale,PosX4); add(!PosX4,!centerX,PosX4);
+
+newflt(PosY4); newflt(subposY4); setflt(subposY4,!Z4); setflt(PosY4,!Y4); mult(!PosY4,!d,PosY4); add(!subposY4,!d,subposY4); div(!PosY4,!subposY4,PosY4); mult(!PosY4,!scale,PosY4); add(!PosY4,!centerY,PosY4);
+
+// point5 projection; newflt(PosX5); newflt(subposX5); setflt(subposX5,!Z5); setflt(PosX5,!X5); mult(!PosX5,!d,PosX5); add(!subposX5,!d,subposX5); div(!PosX5,!subposX5,PosX5); mult(!PosX5,!scale,PosX5); add(!PosX5,!centerX,PosX5);
+
+newflt(PosY5); newflt(subposY5); setflt(subposY5,!Z5); setflt(PosY5,!Y5); mult(!PosY5,!d,PosY5); add(!subposY5,!d,subposY5); div(!PosY5,!subposY5,PosY5); mult(!PosY5,!scale,PosY5); add(!PosY5,!centerY,PosY5);
+
+// point6 projection ;newflt(PosX6); newflt(subposX6); setflt(subposX6,!Z6); setflt(PosX6,!X6); mult(!PosX6,!d,PosX6); add(!subposX6,!d,subposX6); div(!PosX6,!subposX6,PosX6); mult(!PosX6,!scale,PosX6); add(!PosX6,!centerX,PosX6);
+
+newflt(PosY6); newflt(subposY6); setflt(subposY6,!Z6); setflt(PosY6,!Y6); mult(!PosY6,!d,PosY6); add(!subposY6,!d,subposY6); div(!PosY6,!subposY6,PosY6); mult(!PosY6,!scale,PosY6); add(!PosY6,!centerY,PosY6);
+
+// point7 projection ;newflt(PosX7); newflt(subposX7); setflt(subposX7,!Z7); setflt(PosX7,!X7); mult(!PosX7,!d,PosX7); add(!subposX7,!d,subposX7); div(!PosX7,!subposX7,PosX7); mult(!PosX7,!scale,PosX7); add(!PosX7,!centerX,PosX7);
+
+newflt(PosY7); newflt(subposY7); setflt(subposY7,!Z7); setflt(PosY7,!Y7); mult(!PosY7,!d,PosY7); add(!subposY7,!d,subposY7); div(!PosY7,!subposY7,PosY7); mult(!PosY7,!scale,PosY7); add(!PosY7,!centerY,PosY7);
+
+// point8 projection ;newflt(PosX8); newflt(subposX8); setflt(subposX8,!Z8); setflt(PosX8,!X8); mult(!PosX8,!d,PosX8); add(!subposX8,!d,subposX8); div(!PosX8,!subposX8,PosX8); mult(!PosX8,!scale,PosX8); add(!PosX8,!centerX,PosX8);
+
+newflt(PosY8); newflt(subposY8); setflt(subposY8,!Z8); setflt(PosY8,!Y8); mult(!PosY8,!d,PosY8); add(!subposY8,!d,subposY8); div(!PosY8,!subposY8,PosY8); mult(!PosY8,!scale,PosY8); add(!PosY8,!centerY,PosY8);
+
+//render;
+setsize(1500,1500);
+paint(0,0,8000,7000) /255/0/0;
+paint(!PosX1,!PosY1,5,5)/111/0/255;
+line(!PosX1,!PosY1,!PosX2,!PosY2)/111/255/111;
+line(!PosX1,!PosY1,!PosX4,!PosY4)/111/255/111;
+line(!PosX1,!PosY1,!PosX5,!PosY5)/111/255/111;
+
+paint(!PosX2,!PosY2,5,5)/111/0/255;
+line(!PosX2,!PosY2,!PosX3,!PosY3)/111/255/111;
+line(!PosX2,!PosY2,!PosX6,!PosY6)/111/255/111;
+
+paint(!PosX3,!PosY3,5,5)/111/0/255;
+line(!PosX3,!PosY3,!PosX4,!PosY4)/111/255/111;
+
+paint(!PosX4,!PosY4,5,5)/111/0/255;
+
+line(!PosX4,!PosY4,!PosX8,!PosY8)/111/255/111;
+
+paint(!PosX5,!PosY5,5,5)/111/0/255;
+line(!PosX5,!PosY5,!PosX8,!PosY8)/111/255/111;
+
+paint(!PosX6,!PosY6,5,5)/111/0/255;
+
+line(!PosX6,!PosY6,!PosX7,!PosY7)/111/255/111;
+line(!PosX6,!PosY6,!PosX5,!PosY5)/111/255/111;
+
+ paint(!PosX7,!PosY7,5,5)/111/0/255;
+ line(!PosX7,!PosY7,!PosX3,!PosY3)/111/255/111;
+ line(!PosX7,!PosY7,!PosX8,!PosY8)/111/255/111;
+  paint(!PosX8,!PosY8,5,5)/111/0/255;
+   show(1);
+if key(A,noLeft);
+add(!X1,0.1,X1);
+add(!X2,0.1,X2);
+add(!X3,0.1,X3);
+add(!X4,0.1,X4);
+add(!X5,0.1,X5);
+add(!X6,0.1,X6);
+add(!X7,0.1,X7);
+add(!X8,0.1,X8);
+#noLeft;
+if key(D,noRight);
+sub(!X1,0.1,X1);
+sub(!X2,0.1,X2);
+sub(!X3,0.1,X3);
+sub(!X4,0.1,X4);
+sub(!X5,0.1,X5);
+sub(!X6,0.1,X6);
+sub(!X7,0.1,X7);
+sub(!X8,0.1,X8);
+#noRight;
+if key(S,noUp);
+sub(!Z1,0.1,Z1);
+sub(!Z2,0.1,Z2);
+sub(!Z3,0.1,Z3);
+sub(!Z4,0.1,Z4);
+sub(!Z5,0.1,Z5);
+sub(!Z6,0.1,Z6);
+sub(!Z7,0.1,Z7);
+sub(!Z8,0.1,Z8);
+#noUp;
+if key(W,noDown);
+add(!Z1,0.1,Z1);
+add(!Z2,0.1,Z2);
+add(!Z3,0.1,Z3);
+add(!Z4,0.1,Z4);
+add(!Z5,0.1,Z5);
+add(!Z6,0.1,Z6);
+add(!Z7,0.1,Z7);
+add(!Z8,0.1,Z8);
+#noDown;
+if key(Q,noForward);
+add(!Y1,0.1,Y1);
+add(!Y2,0.1,Y2);
+add(!Y3,0.1,Y3);
+add(!Y4,0.1,Y4);
+add(!Y5,0.1,Y5);
+add(!Y6,0.1,Y6);
+add(!Y7,0.1,Y7);
+add(!Y8,0.1,Y8);
+#noForward;
+if key(E,noBack);
+sub(!Y1,0.1,Y1);
+sub(!Y2,0.1,Y2);
+sub(!Y3,0.1,Y3);
+sub(!Y4,0.1,Y4);
+sub(!Y5,0.1,Y5);
+sub(!Y6,0.1,Y6);
+sub(!Y7,0.1,Y7);
+sub(!Y8,0.1,Y8);
+#noBack;
+   goto(frame);

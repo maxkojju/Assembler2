@@ -17,11 +17,11 @@ namespace Assembler2
 {
 	internal class Program
 	{
-		static public bool debug = true;
+		static public bool debug = false;
 		static DisplayForm displayForm = new DisplayForm(1,1);
 
 
-		static string CodePath = "S:\\Users\\mansu\\source\\repos\\Assembler2\\Assembler2\\3dCude.ass2";
+		static string CodePath = "";
 		static string SourceCode = @"";
 
 
@@ -33,10 +33,11 @@ namespace Assembler2
 
 		static void Main(string[] args)
 		{
-		if(CodePath != "")
-			SourceCode = File.ReadAllText(CodePath);
+			Console.WriteLine("input path to .ass2 file");
+		if(CodePath == "")
+			SourceCode = File.ReadAllText(Console.ReadLine());
+			else SourceCode = File.ReadAllText(CodePath);
 
-			
 			int line = 0;
 			var surface = SKSurface.Create(new SKImageInfo(400, 300));
 			SKCanvas canvas = surface.Canvas;
@@ -142,7 +143,16 @@ namespace Assembler2
 					string Name = getStr(code.Split(',')[2].Split(')')[0]);
 					if (debug) Console.WriteLine("			divide :" + Value + "+" + Value2);
 					setFlt(Name, Value / Value2);
-				}else
+				}else if(code.StartsWith("reflt"))
+				{
+					
+					string Value = getStr(code.Split('(')[1].Split(',')[0]);
+					float Val = getFlt("!"+Value);
+					string Value2 = getStr(code.Split(',')[1].Split(')')[0]);
+					if (debug) Console.WriteLine("			reflt :" +Value+" in "+ Val + " of " + Value2);
+					setFlt(Value2, Val);
+				}
+				else
 				if (code.StartsWith("combine"))
 				{
 					string Value = getStr(code.Split('(')[1].Split(',')[0]);
@@ -563,6 +573,9 @@ namespace Assembler2
 		}
 		static void setFlt(string Name, float Val)
 		{
+			if (!floatHolders.ContainsKey(Name.Trim()))
+				floatHolders.Add(Name.Trim(), -1);
+
 			floatHolders[Name.Trim()] = Val;
 		}
 		static void newFlt(string Name)
@@ -587,7 +600,10 @@ namespace Assembler2
 			if (debug) Console.WriteLine("			reading float " + Val);
 
 			if (Val.Trim().StartsWith("!"))
-				return floatHolders[Val.Trim().Substring(1)];
+			{ if (floatHolders.ContainsKey(Val.Trim().Substring(1)))
+					return floatHolders[Val.Trim().Substring(1)];
+				else return -2;
+			}
 			else
 			{
 				if (debug) Console.WriteLine("			parsing " + (Val.Trim()));

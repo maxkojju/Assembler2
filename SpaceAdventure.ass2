@@ -1,0 +1,66 @@
+newflt(PlayerX);
+newflt(PlayerY);
+newflt(TotalObjects);
+
+
+
+
+
+
+
+//your map;
+setflt(TotalObjects,10);
+setflt(ObjectX1,100);setflt(ObjectY1,300);
+setflt(ObjectX2,760);setflt(ObjectY2,300);
+setflt(ObjectX3,50);setflt(ObjectY3,100);
+
+
+
+
+
+newstr(objX); newstr(objY); newflt(curX); newflt(curY);
+
+newflt(tick); newstr(tickstr);
+include<window> (800,600);
+#frame;
+setsize(800,600);
+bgpaint(0,0,800,600) /0/0/0;
+setflt(tick,0);
+
+#drawloop;
+//for loop, draw every object in scene;
+if<(!tick,!TotalObjects,endPaint);
+    add(!tick,1,tick);
+    str<flt(tickstr,!tick);
+    combine(ObjectX,!tickstr,objX);
+    combine(ObjectY,!tickstr,objY);
+    reflt(!objX,curX);
+    reflt(!objY,curY);
+    add(!curX,!PlayerX,curX);
+    add(!curY,!PlayerY,curY);
+    paint(!curX,!curY,90,90) /255/255/255;
+    goto(drawloop);
+#endPaint;
+
+newflt(reposMove);
+if key(A,noLeft);
+overlap?(390,300,50,50,noLeft);
+add(!PlayerX,10,PlayerX);
+#noLeft;
+if key(D,noRight);
+overlap?(410,300,50,50,noRight);
+sub(!PlayerX,10,PlayerX);
+#noRight;
+if key(W,noUp);
+overlap?(400,290,50,50,noUp);
+add(!PlayerY,10,PlayerY);
+#noUp;
+if key(S,noDown);
+overlap?(400,310,50,50,noDown);
+sub(!PlayerY,10,PlayerY);
+#noDown;
+
+paint(400,300,50,50) /50/50/255;
+show(1);
+
+goto(frame);

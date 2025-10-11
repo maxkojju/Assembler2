@@ -1,0 +1,27 @@
+@void1;
+
+    print(hello world);
+
+    @void In void;
+        print(this is void inside of void!);
+        (void called in void);
+    @!void In void;
+
+    @void called in void;
+        print(this void called in other void);
+    @!void called in void;
+
+@!void1;
+
+print(start);
+
+
+
+(void1);
+
+
+
+(void In void);
+
+
+print(end);

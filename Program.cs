@@ -50,10 +50,19 @@ namespace Assembler2
 			code = code.Trim();
 			
 			line++;
-				if (code.StartsWith("//"))
+				if (code.StartsWith("//") || code.StartsWith("#"))
 				{
 					if (debug) Console.WriteLine("			"+code);
-				}if(code.StartsWith("include<window>"))
+				}if (code.StartsWith("@"))
+				{
+					if (!code.StartsWith("@!"))
+					{
+						int newLn = findStr(SourceCode, "@!" + code.Split('@')[1]
+							.Split(')')[0]);
+						line = newLn;
+					}
+				}
+				if(code.StartsWith("include<window>"))
 				{
 					float Value2 = getFlt(code.Split('(')[1].Split(',')[0]);
 					float Value = getFlt(code.Split(',')[1].Split(')')[0]);
@@ -281,7 +290,7 @@ namespace Assembler2
 					float Color2 = getFlt(code.Split('/')[2]);
 					float Color3 = getFlt(code.Split('/')[3].Replace(";", ""));
 					SKColor color = new SKColor((byte)Color1, (byte)Color2, (byte)Color3);
-					using (var paint = new SKPaint { Color = color})
+					using (var paint = new SKPaint { Color = color })
 					{
 						canvas.DrawLine(Value1, Value2, Value3, Value4, paint);
 					}
@@ -420,12 +429,28 @@ namespace Assembler2
 					Cv2.WaitKey(0);
 					Cv2.DestroyAllWindows();
 				}
+				else if (code.StartsWith("@!"))
+				{
+					if (LastLines.Count != 0)
+					{
+						line = LastLines[LastLines.Count - 1];
+						LastLines.RemoveAt(LastLines.Count - 1);
+					}
+				}
+				else if(code.StartsWith("("))
+				{
+					LastLines.Add(line);
+					int newLn = findStr(SourceCode, "@" + code.Split('(')[1]
+					.Split(')')[0])+1;
+					line = newLn;
+				}
 				
 			}
 		}
 		#endregion
 		#region funcs
 
+		static List<int> LastLines = new List<int>();
 		public static bool TryParseConsoleKey(string input, out ConsoleKey consoleKey)
 		{
 			consoleKey = default;
@@ -555,10 +580,14 @@ namespace Assembler2
 
 		static int findStr(string source,string target)
 		{
-		
 			string[] strings = source.Split(';');
 			for (int i = 0; i < strings.Length; i++)
 			{
+			if(target.Trim().StartsWith("@"))
+			{
+				if (strings[i].Trim() == target.Trim()) return i;
+			}
+			else
 				if (strings[i].Trim() == "#" + target.Trim()) return i;
 			}
 			return -1;
